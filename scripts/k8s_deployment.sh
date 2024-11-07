@@ -61,6 +61,10 @@ do
       netAppIP="$1"
       shift
       ;;
+    --subscriptionId)
+      subscriptionId="$1"
+      shift
+      ;;
     --help|-help|-h)
       print_usage
       exit 13
@@ -104,7 +108,7 @@ chmod 700 get_helm.sh
 
 #Sign in with a managed identity
 az login --identity
-
+az account set --subscription "$subscriptionId"
 az aks get-credentials --resource-group "$resource_group" --name "$aks_name"
 
 mkdir ~/$fileshare
