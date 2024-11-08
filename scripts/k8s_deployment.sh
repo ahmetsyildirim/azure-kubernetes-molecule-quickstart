@@ -113,7 +113,7 @@ az aks get-credentials --resource-group "$resource_group" --name "$aks_name"
 
 mkdir ~/$fileshare
 
-mount -t nfs -o rw,hard,rsize=262144,wsize=262144,vers=4.1,tcp $netAppIP:/$fileshare ~/$fileshare
+mount -t nfs -o rw,hard,rsize=262144,wsize=262144,vers=3,tcp $netAppIP:/$fileshare ~/$fileshare
 
 chmod -R 777 ~/$fileshare
 
