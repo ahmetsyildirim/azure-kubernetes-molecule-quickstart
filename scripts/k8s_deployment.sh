@@ -75,7 +75,7 @@ do
   esac
 done
 
-exec &> /var/log/bastion2.log
+exec &> /var/log/bastion.log
 set -x
 
 #cfn signaling functions
