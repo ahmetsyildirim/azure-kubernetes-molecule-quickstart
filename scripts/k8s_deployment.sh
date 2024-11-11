@@ -65,6 +65,10 @@ do
       subscriptionId="$1"
       shift
       ;;
+    --vmUserName)
+      vmUserName="$1"
+      shift
+      ;;
     --help|-help|-h)
       print_usage
       exit 13
@@ -85,6 +89,7 @@ yum install git -y || apt-get install -y git || zypper -n install git
 curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
 chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
+export PATH="/home/$vmUserName/.local/bin:/home/$vmUserName/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin"
 kubectl version --client
 
 rpm --import https://packages.microsoft.com/keys/microsoft.asc
