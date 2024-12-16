@@ -69,6 +69,14 @@ do
       vmUserName="$1"
       shift
       ;;
+      --appGatewayId)
+      appGatewayId="$1"
+      shift
+      ;;
+      --agicIdentityClientId)
+      agicIdentityClientId="$1"
+      shift
+      ;;
     --help|-help|-h)
       print_usage
       exit 13
@@ -455,8 +463,17 @@ spec:
         averageUtilization: 60
 EOF
 
+helm install ingress-azure \
+  oci://mcr.microsoft.com/azure-application-gateway/charts/ingress-azure \
+  --set appgw.applicationGatewayID=$appGatewayId \
+  --set armAuth.type=workloadIdentity \
+  --set armAuth.identityClientID=agicIdentityClientId \
+  --set rbac.enabled=true \
+  --version 1.7.3
 
-kubectl apply -f https://raw.githubusercontent.com/Azure/aad-pod-identity/master/deploy/infra/deployment-rbac.yaml --kubeconfig=/root/.kube/config
+#deprecated
+#kubectl apply -f https://raw.githubusercontent.com/Azure/aad-pod-identity/master/deploy/infra/deployment-rbac.yaml --kubeconfig=/root/.kube/config
+#deprecated
 
 kubectl apply -f /tmp/namespace.yaml --kubeconfig=/root/.kube/config
 
