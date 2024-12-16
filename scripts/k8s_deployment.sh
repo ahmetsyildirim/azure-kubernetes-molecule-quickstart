@@ -467,7 +467,7 @@ helm install ingress-azure \
   oci://mcr.microsoft.com/azure-application-gateway/charts/ingress-azure \
   --set appgw.applicationGatewayID=$appGatewayId \
   --set armAuth.type=workloadIdentity \
-  --set armAuth.identityClientID=agicIdentityClientId \
+  --set armAuth.identityClientID=$agicIdentityClientId \
   --set rbac.enabled=true \
   --version 1.7.3
 
