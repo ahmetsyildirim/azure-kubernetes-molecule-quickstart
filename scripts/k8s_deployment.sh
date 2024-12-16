@@ -463,6 +463,8 @@ spec:
         averageUtilization: 60
 EOF
 
+sleep 120
+
 helm install ingress-azure \
   oci://mcr.microsoft.com/azure-application-gateway/charts/ingress-azure \
   --set appgw.applicationGatewayID=$appGatewayId \
